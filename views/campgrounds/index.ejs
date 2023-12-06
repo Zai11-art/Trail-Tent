@@ -1,0 +1,62 @@
+<div class="container-fluid">
+  <div id="cluster-map" class="align-items-center"></div>
+</div>
+
+<% layout('layouts/boilerplate') %>
+
+<div class="container-fluid">
+  <div class="d-flex flex-column align-items-center mb-3 pb-2">
+    <div class="mb-3 pb-2">
+      <h1 class="display-5 fw-semibold">
+        <span class="text-warning">&#x263E;</span> All Campgrounds
+        <span class="text-warning">&#x263c;</span>
+      </h1>
+    </div>
+    <div class="mb-3 pb-2">
+      <a
+        class="text-dark btn-warning btn fw-semibold btn-sm add-camp-button"
+        href="/campgrounds/new"
+        >Add Your Camp Now</a
+      >
+    </div>
+  </div>
+</div>
+
+<% for (let campground of campgrounds) { %>
+<div class="card mb-3 p-2">
+  <div class="row">
+    <div class="col-md-4">
+      <% if(campground.images.length) {%>
+      <img class="img-fluid" alt="" src="<%=campground.images[0].url%>" />
+      <%} else {%>
+      <img
+        class="img-fluid"
+        alt=""
+        src="https://res.cloudinary.com/dyj3kyaxl/image/upload/v1677690733/Trailtent/ohiqk3t6dhlq6ajeaeiu.jpg"
+      />
+      <% } %>
+    </div>
+    <div class="col-md-8">
+      <div class="card-body">
+        <h5 class="card-title"><%= campground.title %></h5>
+        <p class="card-text"><%= campground.description %></p>
+        <p class="card-text">
+          <small class="text-muted"><%= campground.location %></small>
+        </p>
+        <a
+          href="/campgrounds/<%= campground._id %>"
+          class="btn btn-dark text-warning"
+          >View <%= campground.title %></a
+        >
+      </div>
+    </div>
+  </div>
+</div>
+<% } %>
+
+<script>
+  const mapToken = '<%-process.env.MAPBOX_TOKEN%>';// to declare and access the mapbox token
+  const campgrounds = {features: <%-JSON.stringify(campgrounds)%>} ;
+</script>
+
+<script src="/js/clustermap.js"></script>

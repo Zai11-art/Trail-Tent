@@ -1,0 +1,14 @@
+
+FRONTEND 
+1. register and login pages should have an image or png showing 
+    --> register = a (mascot to be announced) that is writing 
+    --> design =
+
+
+
+
+BACKEND 
+1. add an option wherein the image upload should be limited by:
+    - size maybe 5 maybe
+    - number of images 5 maybe
+
